@@ -19,6 +19,7 @@ function About() {
   return (
     <div className="flex flex-col items-center lg:items-start justify-between h-[65vh] lg:h-[55vh] text-white lg:ml-[22vw] z-20">
       <div className="h-[0.2vw] w-[60vh] bg-white hidden lg:fixed lg:block bottom-[10vh] right-[10vw] "></div>
+
       <div className="fixed hidden top-[23vh] left-[7.8vw] lg:flex flex-col items-center space-y-8 ">
         <div className="w-[0.2vw] h-[20vh] bg-white "></div>
         <a
@@ -26,15 +27,15 @@ function About() {
           target="_blank"
           rel="noreferrer"
         >
-          <FaGithub className="w-8 h-8 cursor-pointer " />
+          <FaGithub className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
         </a>
         <a
           href="https://www.linkedin.com/in/akshitagrwl/"
           target="_blank"
           rel="noreferrer"
+          className=""
         >
-          {" "}
-          <FaLinkedin className="w-8 h-8 cursor-pointer " />
+          <FaLinkedin className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
         </a>
         <div className="w-[0.2vw] h-[30vh] mt-[15vh] bg-white "></div>
       </div>
@@ -55,7 +56,7 @@ function About() {
         </h1>
       </div>
       <button
-        className="p-2 mt-2 flex items-center text-sm border-2 space-x-1 lg:space-x-3 hover:bg-white hover:text-[#1f1f1f] transition-all hover:border-[#1f1f1f] lg:text-xl lg:p-3 "
+        className="p-2 hover:scale-105 mt-2 flex items-center text-sm border-2 space-x-1 transition-all lg:space-x-3 hover:bg-white hover:text-[#1f1f1f] transition-all hover:border-[#1f1f1f] lg:text-xl lg:p-3 "
         onClick={() => {
           window.open(
             "https://drive.google.com/file/d/1OoLLOUQtxmtVL78OgL3XbboieFlw9FQb/view?usp=sharing"
