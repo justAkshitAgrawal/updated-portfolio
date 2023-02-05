@@ -5,12 +5,7 @@ import { motion } from "framer-motion";
 
 function App() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className="h-screen bg-[#1f1f1f]  relative font-poppins"
-    >
+    <div className="h-screen bg-[#1f1f1f]  relative font-poppins">
       {/* <Spline
         className="lg:absolute lg:scale-100 opacity-50 top-0 left-0 brightness-[40%] scale-50"
         scene="https://prod.spline.design/in8RfRXlEHA7oIRm/scene.splinecode"
@@ -23,7 +18,7 @@ function App() {
       <div className="h-screen pt-[22vh] ">
         <About />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
