@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Socials from "./Socials";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import Skills from "./modals/Skills";
+import Experience from "./modals/Experience";
 
 function About() {
   const about = [
@@ -14,59 +17,116 @@ function About() {
     `I'm a frontend developer who can code circles around a designer's sketches.\nI turn pixels into websites and turn coffee into code.\nI'm not saying I'm the best, but the websites I create are definitely more attractive than my personality.\nI'm like a magician, but instead of pulling rabbits out of hats,\nI pull responsive, user-friendly websites out of thin air.`,
   ];
 
+  const [SkillModal, setSkillModal] = useState(false);
+  const [experienceModal, setExperienceModal] = useState(false);
+
   const randomElement = about[Math.floor(Math.random() * about.length)];
 
   return (
-    <div className="flex flex-col items-center lg:items-start justify-between h-[65vh] lg:h-[55vh] text-white lg:ml-[22vw] z-20">
-      <div className="h-[0.2vw] w-[60vh] bg-white hidden lg:fixed lg:block bottom-[10vh] right-[10vw] "></div>
-
-      <div className="fixed hidden top-[23vh] left-[7.8vw] lg:flex flex-col items-center space-y-8 ">
-        <div className="w-[0.2vw] h-[20vh] bg-white "></div>
-        <a
-          href="https://github.com/justAkshitAgrawal"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FaGithub className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/akshitagrwl/"
-          target="_blank"
-          rel="noreferrer"
-          className=""
-        >
-          <FaLinkedin className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
-        </a>
-        <div className="w-[0.2vw] h-[30vh] mt-[15vh] bg-white "></div>
-      </div>
-      <div className="flex flex-col items-center justify-center lg:items-start">
-        <h1 className="text-xl lg:text-5xl ">Bonjour,</h1>
-        <div className="flex items-center mt-1 space-x-2 text-xl font-semibold lg:mt-8 lg:text-5xl">
-          <h1 className="font-normal ">I am</h1>
-          <TypeAnimation
-            speed={20}
-            wrapper="h1"
-            className="font-bold "
-            sequence={["Akshit Agrawal"]}
-          ></TypeAnimation>
+    <AnimatePresence>
+      <div className="flex flex-col items-center lg:items-start justify-between h-[65vh] lg:h-[55vh] text-white lg:ml-[22vw] z-20">
+        <div className="h-[0.2vw] w-[60vh] bg-white hidden lg:fixed lg:block bottom-[10vh] right-[10vw] text-lg ">
+          <div className="flex justify-between mt-3 ml-2 space-x-3">
+            <div className="flex items-center space-x-5">
+              <h1
+                className="cursor-pointer "
+                onClick={() => {
+                  setSkillModal(false);
+                  setExperienceModal(false);
+                }}
+              >
+                Home
+              </h1>
+              <h1
+                className="cursor-pointer "
+                onClick={() => {
+                  setSkillModal(true);
+                  setExperienceModal(false);
+                }}
+              >
+                Skills
+              </h1>
+              <h1
+                className="cursor-pointer "
+                onClick={() => {
+                  setSkillModal(false);
+                  setExperienceModal(true);
+                }}
+              >
+                Experience
+              </h1>
+            </div>
+            <a href="mailto:me@akshitagrawal.dev" className="">
+              me@akshitagrawal.dev
+            </a>
+          </div>
         </div>
-        <Socials />
-        <h1 className="px-10 mt-5 lg:mt-10 text-center text-[#9d9d9c] lg:text-white/70 text-sm whitespace-pre-wrap lg:text-xl lg:text-left lg:p-0 lg:leading-relaxed lg:max-w-[60vw] ">
-          {randomElement}
-        </h1>
+        <div className="fixed hidden top-[23vh] left-[7.8vw] lg:flex flex-col items-center space-y-8 ">
+          <div className="w-[0.2vw] h-[20vh] bg-white "></div>
+          <a
+            href="https://github.com/justAkshitAgrawal"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaGithub className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/akshitagrwl/"
+            target="_blank"
+            rel="noreferrer"
+            className=""
+          >
+            <FaLinkedin className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
+          </a>
+          <div className="w-[0.2vw] h-[30vh] mt-[15vh] bg-white "></div>
+        </div>
+
+        {!SkillModal && !experienceModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 1,
+            }}
+          >
+            <div className="flex flex-col items-center justify-center lg:items-start">
+              <h1 className="text-xl lg:text-5xl ">Bonjour,</h1>
+              <div className="flex items-center mt-1 space-x-2 text-xl font-semibold lg:mt-8 lg:text-5xl">
+                <h1 className="font-normal ">I am</h1>
+                <TypeAnimation
+                  speed={30}
+                  wrapper="h1"
+                  className="font-bold "
+                  sequence={["Akshit Agrawal"]}
+                ></TypeAnimation>
+              </div>
+              <Socials />
+              <h1 className="px-10 mt-5 lg:mt-10 text-center text-[#9d9d9c] lg:text-white/70 text-sm whitespace-pre-wrap lg:text-xl lg:text-left lg:p-0 lg:leading-relaxed lg:max-w-[60vw] ">
+                {randomElement}
+              </h1>
+            </div>
+          </motion.div>
+        )}
+
+        {SkillModal && <Skills />}
+
+        {experienceModal && <Experience />}
+
+        {!SkillModal && !experienceModal && (
+          <button
+            className="p-2 hover:scale-105 mt-2 flex items-center text-sm border-2 space-x-1 lg:space-x-3 hover:bg-white hover:text-[#1f1f1f] transition-all hover:border-[#1f1f1f] lg:text-xl lg:p-3 "
+            onClick={() => {
+              window.open(
+                "https://drive.google.com/file/d/1OoLLOUQtxmtVL78OgL3XbboieFlw9FQb/view?usp=sharing"
+              );
+            }}
+          >
+            <h1>Download Resume</h1>
+            <BsArrowRightShort className="w-5 h-5 " />
+          </button>
+        )}
       </div>
-      <button
-        className="p-2 hover:scale-105 mt-2 flex items-center text-sm border-2 space-x-1 transition-all lg:space-x-3 hover:bg-white hover:text-[#1f1f1f] transition-all hover:border-[#1f1f1f] lg:text-xl lg:p-3 "
-        onClick={() => {
-          window.open(
-            "https://drive.google.com/file/d/1OoLLOUQtxmtVL78OgL3XbboieFlw9FQb/view?usp=sharing"
-          );
-        }}
-      >
-        <h1>Download Resume</h1>
-        <BsArrowRightShort className="w-5 h-5 " />
-      </button>
-    </div>
+    </AnimatePresence>
   );
 }
 
