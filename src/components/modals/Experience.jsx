@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ExpItem from "../ExpItem";
+import { BiLeftArrow } from "react-icons/bi";
 
-function Experience() {
+function Experience({ setSkillModal, setExperienceModal }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,6 +18,13 @@ function Experience() {
             Years of Experience Pretending to Work While Surfing the Web
           </h1>
         </div>
+        <BiLeftArrow
+          onClick={() => {
+            setSkillModal(true);
+            setExperienceModal(false);
+          }}
+          className="fixed z-20 text-white right-[10.3vw] bottom-[13vh] h-6 w-6 cursor-pointer hover:scale-110 transition-all "
+        />
         <div className="grid grid-cols-2 gap-10 mt-14">
           <ExpItem
             role="Front-end Intern"

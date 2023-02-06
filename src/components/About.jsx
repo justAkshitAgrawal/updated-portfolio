@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Socials from "./Socials";
-import { BsArrowRightShort } from "react-icons/bs";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Skills from "./modals/Skills";
 import Experience from "./modals/Experience";
+import { BiRightArrow } from "react-icons/bi";
+import { AiOutlineDownload } from "react-icons/ai";
 
 function About() {
   const about = [
@@ -25,32 +26,41 @@ function About() {
   return (
     <AnimatePresence>
       <div className="flex flex-col items-center lg:items-start justify-between h-[65vh] lg:h-[55vh] text-white lg:ml-[22vw] z-20">
-        <div className="h-[0.2vw] w-[60vh] bg-white hidden lg:fixed lg:block bottom-[10vh] right-[10vw] text-lg ">
+        <div className="h-[0.2vw] w-[60vh] bg-white hidden lg:fixed lg:block bottom-[10vh] right-[10vw] text-lg rounded-md ">
           <div className="flex justify-between mt-3 ml-2 space-x-3">
             <div className="flex items-center space-x-5">
               <h1
-                className="cursor-pointer "
+                className="cursor-pointer text-[#9d9d9c] "
                 onClick={() => {
                   setSkillModal(false);
                   setExperienceModal(false);
+                }}
+                style={{
+                  color: !SkillModal && !experienceModal && "white",
                 }}
               >
                 Home
               </h1>
               <h1
-                className="cursor-pointer "
+                className="cursor-pointer text-[#9d9d9c]"
                 onClick={() => {
                   setSkillModal(true);
                   setExperienceModal(false);
+                }}
+                style={{
+                  color: SkillModal && "white",
                 }}
               >
                 Skills
               </h1>
               <h1
-                className="cursor-pointer "
+                className="cursor-pointer text-[#9d9d9c]"
                 onClick={() => {
                   setSkillModal(false);
                   setExperienceModal(true);
+                }}
+                style={{
+                  color: experienceModal && "white",
                 }}
               >
                 Experience
@@ -62,7 +72,7 @@ function About() {
           </div>
         </div>
         <div className="fixed hidden top-[23vh] left-[7.8vw] lg:flex flex-col items-center space-y-8 ">
-          <div className="w-[0.2vw] h-[20vh] bg-white "></div>
+          <div className="w-[0.2vw] h-[20vh] bg-white rounded-md "></div>
           <a
             href="https://github.com/justAkshitAgrawal"
             target="_blank"
@@ -78,7 +88,7 @@ function About() {
           >
             <FaLinkedin className="w-8 h-8 transition-all cursor-pointer hover:scale-125" />
           </a>
-          <div className="w-[0.2vw] h-[30vh] mt-[15vh] bg-white "></div>
+          <div className="w-[0.2vw] h-[30vh] mt-[15vh] bg-white rounded-md "></div>
         </div>
 
         {!SkillModal && !experienceModal && (
@@ -105,16 +115,33 @@ function About() {
                 {randomElement}
               </h1>
             </div>
+            <BiRightArrow
+              onClick={() => {
+                setSkillModal(true);
+                setExperienceModal(false);
+              }}
+              className="fixed z-20 text-white right-[10vw] bottom-[13vh] h-6 w-6 cursor-pointer hover:scale-110 transition-all "
+            />
           </motion.div>
         )}
 
-        {SkillModal && <Skills />}
+        {SkillModal && (
+          <Skills
+            setSkillModal={setSkillModal}
+            setExperienceModal={setExperienceModal}
+          />
+        )}
 
-        {experienceModal && <Experience />}
+        {experienceModal && (
+          <Experience
+            setSkillModal={setSkillModal}
+            setExperienceModal={setExperienceModal}
+          />
+        )}
 
         {!SkillModal && !experienceModal && (
           <button
-            className="p-2 hover:scale-105 mt-2 flex items-center text-sm border-2 space-x-1 lg:space-x-3 hover:bg-white hover:text-[#1f1f1f] transition-all hover:border-[#1f1f1f] lg:text-xl lg:p-3 "
+            className="p-2 hover:scale-105 mt-2 flex items-center text-sm border-2 space-x-1 lg:space-x-2 hover:bg-white hover:text-[#1f1f1f] transition-all hover:border-[#1f1f1f] lg:text-xl lg:p-3 "
             onClick={() => {
               window.open(
                 "https://drive.google.com/file/d/1OoLLOUQtxmtVL78OgL3XbboieFlw9FQb/view?usp=sharing"
@@ -122,7 +149,7 @@ function About() {
             }}
           >
             <h1>Download Resume</h1>
-            <BsArrowRightShort className="w-5 h-5 " />
+            <AiOutlineDownload />
           </button>
         )}
       </div>

@@ -4,8 +4,9 @@ import SkillItem from "../SkillItem";
 import { FaCss3Alt, FaHtml5, FaJava, FaJs, FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { RiGhostSmileLine } from "react-icons/ri";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
-function Skills() {
+function Skills({ setSkillModal, setExperienceModal }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -20,6 +21,20 @@ function Skills() {
             Finally, a List of Skills That Prove I'm Not Just Wasting Time on
             the Internet
           </h1>
+          <BiLeftArrow
+            onClick={() => {
+              setSkillModal(false);
+              setExperienceModal(false);
+            }}
+            className="fixed z-20 text-white right-[11.5vw] bottom-[13vh] h-6 w-6 cursor-pointer hover:scale-110 transition-all "
+          />
+          <BiRightArrow
+            onClick={() => {
+              setSkillModal(false);
+              setExperienceModal(true);
+            }}
+            className="fixed z-20 text-white right-[10vw] bottom-[13vh] h-6 w-6 cursor-pointer hover:scale-110 transition-all "
+          />
         </div>
         <div className="grid grid-cols-5 gap-10 mt-14">
           <SkillItem
